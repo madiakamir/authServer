@@ -1,17 +1,19 @@
 import db from 'oracledb';
 import bluebird from 'bluebird';
 import PromiseModule from 'es6-promise';
+import env from 'dotenv';
 
+env.config();
 const Promise = PromiseModule.Promise;
 let pool;
 
 let dbConfig = {
-  user: 'VTB_PIL',
-  password: 'VTB_PIL',
-  connectString: '192.168.102.62/NEWALFA2',
-  poolMax: 10,
-  poolMin: 0,
-  poolIncrement: 1
+  user: process.env.DB_USER,
+  password: process.env.DB_PWD,
+  connectString: process.env.DB_URL,
+  poolMax: process.env.POOL_MAX,
+  poolMin: process.env.POOL_MIN,
+  poolIncrement: process.env.POOL_INC
 }
 
 //create pool async
